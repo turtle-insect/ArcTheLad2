@@ -1,0 +1,73 @@
+﻿<Window x:Class="ArcTheLad2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArcTheLad2"
+        mc:Ignorable="d"
+		WindowStartupLocation="CenterScreen"
+        Title="ArcTheLad2" Height="550" Width="700">
+	<Window.DataContext>
+		<local:ViewModel/>
+	</Window.DataContext>
+	<DockPanel>
+		<Menu DockPanel.Dock="Top">
+			<MenuItem Header="File">
+				<MenuItem Header="Open" Command="{Binding OpenFileCommand}"/>
+				<MenuItem Header="Save" Command="{Binding SaveFileCommand}"/>
+			</MenuItem>
+		</Menu>
+		<TabControl>
+			<TabItem Header="Character">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="200"/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<ListBox x:Name="ListBoxParty" ItemsSource="{Binding Party}"/>
+					<Grid Grid.Column="1">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition Height="4*"/>
+						</Grid.RowDefinitions>
+						<Label Content="ID"/>
+						<ComboBox Grid.Column="1" ItemsSource="{Binding Info.Chara}" DisplayMemberPath="Name"
+								  SelectedIndex="{Binding ElementName=ListBoxParty, Path=SelectedItem.ID}"/>
+						<Label Grid.Row="1" Content="Lv"/>
+						<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Lv, UpdateSourceTrigger=PropertyChanged}"/>
+						<Label Grid.Row="2" Content="MaxHP"/>
+						<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.MaxHP, UpdateSourceTrigger=PropertyChanged}"/>
+						<Label Grid.Row="3" Content="HP"/>
+						<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.HP, UpdateSourceTrigger=PropertyChanged}"/>
+						<Label Grid.Row="4" Content="MaxMP"/>
+						<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.MaxMP, UpdateSourceTrigger=PropertyChanged}"/>
+						<Label Grid.Row="5" Content="MP"/>
+						<TextBox Grid.Row="5" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.MP, UpdateSourceTrigger=PropertyChanged}"/>
+						<Label Grid.Row="6" Content="Attack"/>
+						<TextBox Grid.Row="6" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Attack, UpdateSourceTrigger=PropertyChanged}"/>
+						<Label Grid.Row="7" Content="Magic"/>
+						<TextBox Grid.Row="7" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Magic, UpdateSourceTrigger=PropertyChanged}"/>
+						<Label Grid.Row="8" Content="Defense"/>
+						<TextBox Grid.Row="8" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Defense, UpdateSourceTrigger=PropertyChanged}"/>
+						<Label Grid.Row="9" Content="Speed"/>
+						<TextBox Grid.Row="9" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Speed, UpdateSourceTrigger=PropertyChanged}"/>
+					</Grid>
+				</Grid>
+			</TabItem>
+		</TabControl>
+	</DockPanel>
+</Window>
