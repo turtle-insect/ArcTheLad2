@@ -10,6 +10,9 @@
 	<Window.DataContext>
 		<local:ViewModel/>
 	</Window.DataContext>
+	<Window.Resources>
+		<local:ItemIDConverter x:Key="ItemIDConverter"/>
+	</Window.Resources>
 	<DockPanel>
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="File">
@@ -67,6 +70,37 @@
 						<TextBox Grid.Row="9" Grid.Column="1" Text="{Binding ElementName=ListBoxParty, Path=SelectedItem.Speed, UpdateSourceTrigger=PropertyChanged}"/>
 					</Grid>
 				</Grid>
+			</TabItem>
+			<TabItem Header="Item">
+				<ListBox ItemsSource="{Binding Items}">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal">
+								<Label Content="Type"/>
+								<TextBox Text="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Width="50"/>
+								<Label Content="Base"/>
+								<TextBox Text="{Binding Base, UpdateSourceTrigger=PropertyChanged}" Width="50"/>
+								<Label Content="Special"/>
+								<TextBox Text="{Binding Special, UpdateSourceTrigger=PropertyChanged}" Width="50"/>
+								<Label Content="Exp"/>
+								<TextBox Text="{Binding Exp, UpdateSourceTrigger=PropertyChanged}" Width="50"/>
+								<Button Content="Copy" Margin="1,1,1,1"
+										Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}, Path=DataContext.CopyItemCommand}"
+										CommandParameter="{Binding}"/>
+								<Button Content="Paste" Margin="1,1,1,1"
+										Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}, Path=DataContext.PasteItemCommand}"
+										CommandParameter="{Binding}"/>
+								<Button Content="Import" Margin="1,1,1,1"
+										Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}, Path=DataContext.ImportItemCommand}"
+										CommandParameter="{Binding}"/>
+								<Button Content="Export" Margin="1,1,1,1"
+										Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}, Path=DataContext.ExportItemCommand}"
+										CommandParameter="{Binding}"/>
+								<Label Content="{Binding Type, Converter={StaticResource ItemIDConverter}}"/>
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
 			</TabItem>
 		</TabControl>
 	</DockPanel>

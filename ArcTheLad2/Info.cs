@@ -10,6 +10,7 @@ namespace ArcTheLad2
     {
 		private static Info mThis = new Info();
 		public List<NameValueInfo> Chara { get; private set; } = new List<NameValueInfo>();
+		public List<NameValueInfo> Item { get; private set; } = new List<NameValueInfo>();
 
 		private Info() { }
 
@@ -26,6 +27,7 @@ namespace ArcTheLad2
 		private void Initialize()
 		{
 			AppendList("info\\chara.txt", Chara);
+			AppendList("info\\item.txt", Item);
 		}
 
 		public NameValueInfo? Search<Type>(List<Type> list, uint id)
