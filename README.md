@@ -19,3 +19,9 @@ PS1 アークザラッド2のセーブデータ編集Tool
 * Edit SavaData
 * Save SaveData
 * SaveData Import
+
+# Special
+* https://arinosu.ari-jigoku.com/arc2/index.html
+
+データベースより、アイテムコードを参照しながら、
+セーブデータへImportして下さい
